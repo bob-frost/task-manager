@@ -12,6 +12,10 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'simplecov', require: false
 end
 
 group :development do

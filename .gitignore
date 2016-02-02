@@ -8,3 +8,4 @@
 !/log/.keep
 /public/assets/*
 /tmp
+/coverage
