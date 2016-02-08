@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
+RSpec.describe Web::UsersController, type: :controller do
   describe 'GET show' do
     context 'when user exists' do
       let(:user) { FactoryGirl.create :user }
@@ -84,23 +84,6 @@ RSpec.describe UsersController, type: :controller do
           post :create, user: valid_params
           expect(response).to redirect_to(User.last)
         end
-
-        context 'when responding to JSON' do
-          it 'returns 201 response' do
-            post :create, user: valid_params, format: :json
-            expect(response.status).to eq(201)
-          end
-
-          it 'renders "show" template' do
-            post :create, user: valid_params, format: :json
-            expect(response).to render_template('show')
-          end
-
-          it 'provides requested user to the view' do
-            post :create, user: valid_params, format: :json
-            expect(controller.view_context.resource_user).to eq(User.last)
-          end
-        end
       end
 
       context 'with invalid params' do
@@ -122,18 +105,6 @@ RSpec.describe UsersController, type: :controller do
           resource_user = controller.view_context.resource_user 
           expect(resource_user.email).to eq(invalid_params[:email])
           expect(resource_user.login).to eq(invalid_params[:login])
-        end
-
-        context 'when responding to JSON' do
-          it 'returns 422 response' do
-            post :create, user: invalid_params, format: :json
-            expect(response.status).to eq(422)
-          end
-
-          it 'renders validation errors' do
-            post :create, user: invalid_params, format: :json
-            expect(response.body).to eq(controller.view_context.resource_user.errors.to_json)
-          end
         end
       end
     end
@@ -248,18 +219,6 @@ RSpec.describe UsersController, type: :controller do
           patch :update, id: user.id, user: valid_params
           expect(response).to redirect_to(another_user)
         end
-
-        context 'when responding to JSON' do
-          it 'returns 401 response' do
-            patch :update, id: user.id, user: valid_params, format: :json
-            expect(response.status).to eq(401)
-          end
-
-          it 'returns error message' do
-            patch :update, id: user.id, user: valid_params, format: :json
-            expect(response.body).to eq({ error: 'Unauthorized' }.to_json)
-          end
-        end
       end
 
       context 'when admin is logged in' do
@@ -288,23 +247,6 @@ RSpec.describe UsersController, type: :controller do
           patch :update, id: user.id, user: valid_params
           expect(response).to redirect_to(user)
         end
-
-        context 'when responding to JSON' do
-          it 'returns 200 response' do
-            patch :update, id: user.id, user: valid_params, format: :json
-            expect(response.status).to eq(200)
-          end
-
-          it 'renders "show" template' do
-            patch :update, id: user.id, user: valid_params, format: :json
-            expect(response).to render_template('show')
-          end
-
-          it 'provides requested user to the view' do
-            patch :update, id: user.id, user: valid_params, format: :json
-            expect(controller.view_context.resource_user).to eq(User.last)
-          end
-        end
       end
 
       context 'when user is logged in' do
@@ -332,23 +274,6 @@ RSpec.describe UsersController, type: :controller do
         it 'redirects to updated user' do
           patch :update, id: user.id, user: valid_params
           expect(response).to redirect_to(user)
-        end
-
-        context 'when responding to JSON' do
-          it 'returns 200 response' do
-            patch :update, id: user.id, user: valid_params, format: :json
-            expect(response.status).to eq(200)
-          end
-
-          it 'renders "show" template' do
-            patch :update, id: user.id, user: valid_params, format: :json
-            expect(response).to render_template('show')
-          end
-
-          it 'provides requested user to the view' do
-            patch :update, id: user.id, user: valid_params, format: :json
-            expect(controller.view_context.resource_user).to eq(User.last)
-          end
         end
       end
 
@@ -383,18 +308,6 @@ RSpec.describe UsersController, type: :controller do
         patch :update, id: user.id, user: invalid_params
         expect(controller.view_context.resource_user).to eq(user)
       end
-
-      context 'when responding to JSON' do
-        it 'returns 422 response' do
-          patch :update, id: user.id, user: invalid_params, format: :json
-          expect(response.status).to eq(422)
-        end
-
-        it 'renders validation errors' do
-          patch :update, id: user.id, user: invalid_params, format: :json
-          expect(response.body).to eq(controller.view_context.resource_user.errors.to_json)
-        end
-      end
     end
   end
 
@@ -411,18 +324,6 @@ RSpec.describe UsersController, type: :controller do
       it 'redirects to login page' do
         delete :destroy, id: user.id
         expect(response).to redirect_to(login_url)
-      end
-
-      context 'when responding to JSON' do
-        it 'returns 401 response' do
-          delete :destroy, id: user.id, format: :json
-          expect(response.status).to eq(401)
-        end
-
-        it 'returns error message' do
-          delete :destroy, id: user.id, format: :json
-          expect(response.body).to eq({ error: 'Unauthorized' }.to_json)
-        end
       end
     end
 
@@ -442,18 +343,6 @@ RSpec.describe UsersController, type: :controller do
       it 'redirects to his own page' do
         delete :destroy, id: user.id
         expect(response).to redirect_to(another_user)
-      end
-
-      context 'when responding to JSON' do
-        it 'returns 401 response' do
-          delete :destroy, id: user.id, format: :json
-          expect(response.status).to eq(401)
-        end
-
-        it 'returns error message' do
-          delete :destroy, id: user.id, format: :json
-          expect(response.body).to eq({ error: 'Unauthorized' }.to_json)
-        end
       end
     end
 
@@ -475,13 +364,6 @@ RSpec.describe UsersController, type: :controller do
         delete :destroy, id: user.id
         expect(response).to redirect_to(root_url)
       end
-
-      context 'when responding to JSON' do
-        it 'returns 204 response' do
-          delete :destroy, id: user.id, format: :json
-          expect(response.status).to eq(204)
-        end
-      end
     end
 
     context 'when user is logged in' do
@@ -501,13 +383,6 @@ RSpec.describe UsersController, type: :controller do
       it 'redirects to home page' do
         delete :destroy, id: user.id
         expect(response).to redirect_to(root_url)
-      end
-
-      context 'when responding to JSON' do
-        it 'returns 204 response' do
-          delete :destroy, id: user.id, format: :json
-          expect(response.status).to eq(204)
-        end
       end
     end
 

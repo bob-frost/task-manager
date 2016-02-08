@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
-  
-  root 'tasks#index'
+  namespace :api do
+  end
 
-  resources :users, except: [:index, :new]
-  get :signup, to: 'users#new', as: :signup
+  scope module: :web do
+    root 'tasks#index'
 
-  get :login, to: 'sessions#new', as: :login
-  post :login, to: 'sessions#create'
-  delete :logout, to: 'sessions#destroy', as: :logout
+    resources :users, except: [:index, :new]
+    get :signup, to: 'users#new', as: :signup
 
-  resources :users, only: [:show]
+    get :login, to: 'sessions#new', as: :login
+    post :login, to: 'sessions#create'
+    delete :logout, to: 'sessions#destroy', as: :logout
 
+    resources :users, only: [:show]
+  end
 end

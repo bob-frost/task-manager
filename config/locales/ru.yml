@@ -1,35 +1,36 @@
 ru:
-  application:
-    main_menu:
-      login: Вход
-      logout: Выход
-      signup: Регистрация
-  sessions:
-    create:
-      failure: Неверный email и/или пароль 
-    new:
-      email: Email
-      password: Пароль
-      remember: Запомнить меня
-      submit: Войти
-      title: Вход
-  users:
-    create:
-      success: Вы успешно зарегистировались
-    destroy:
-      success: Пользователь удален
-    edit:
-      cancel: Отменить
-      submit: Сохранить
-    new:
-      submit: Зарегистироваться
-      title: Регистрация
-    show:
-      destroy: Удалить
-      destroy_confirm: Вы уверены, что хотите удалить аккаунт и все его задачи?
-      edit: Редактировать
-    tabs:
-      profile: Профиль
-      tasks: Задачи
-    update:
-      success: Данные сохранены
+  web:
+    base:
+      main_menu:
+        login: Вход
+        logout: Выход
+        signup: Регистрация
+    sessions:
+      create:
+        failure: Неверный email и/или пароль 
+      new:
+        email: Email
+        password: Пароль
+        remember: Запомнить меня
+        submit: Войти
+        title: Вход
+    users:
+      create:
+        success: Вы успешно зарегистировались
+      destroy:
+        success: Пользователь удален
+      edit:
+        cancel: Отменить
+        submit: Сохранить
+      new:
+        submit: Зарегистироваться
+        title: Регистрация
+      show:
+        destroy: Удалить
+        destroy_confirm: Вы уверены, что хотите удалить аккаунт и все его задачи?
+        edit: Редактировать
+      tabs:
+        profile: Профиль
+        tasks: Задачи
+      update:
+        success: Данные сохранены

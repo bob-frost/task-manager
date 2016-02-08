@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SessionsController, type: :controller do
+RSpec.describe Web::SessionsController, type: :controller do
   describe 'GET new' do
     context 'when user is logged out' do
       it 'returns 200 response' do
@@ -42,13 +42,6 @@ RSpec.describe SessionsController, type: :controller do
         expect(response).to redirect_to(user)
       end
 
-      context 'when responding to JSON' do
-        it 'returns auth_token' do
-          post :create, valid_credentials.merge(format: :json)
-          expect(response.body).to eq({auth_token: user.auth_token}.to_json)
-        end
-      end
-
       context 'when user is logged in' do
         let(:another_user) { FactoryGirl.build_stubbed(:user) }
 
@@ -80,18 +73,6 @@ RSpec.describe SessionsController, type: :controller do
         post :create, invalid_credentials
         expect(response).to render_template('new')
       end
-
-      context 'when responding to JSON' do
-        it 'returns 401 response' do
-          post :create, invalid_credentials.merge(format: :json)
-          expect(response.status).to eq(401)
-        end
-
-        it 'returns error message' do
-          post :create, invalid_credentials.merge(format: :json)
-          expect(response.body).to eq({ error: 'Invalid email and/or password' }.to_json)
-        end
-      end
     end
 
     context 'with invalid password' do
@@ -106,18 +87,6 @@ RSpec.describe SessionsController, type: :controller do
       it 'renders "new" page' do
         post :create, invalid_credentials
         expect(response).to render_template('new')
-      end
-
-      context 'when responding to JSON' do
-        it 'returns 401 response' do
-          post :create, invalid_credentials.merge(format: :json)
-          expect(response.status).to eq(401)
-        end
-
-        it 'returns error message' do
-          post :create, invalid_credentials.merge(format: :json)
-          expect(response.body).to eq({ error: 'Invalid email and/or password' }.to_json)
-        end
       end
     end
   end
