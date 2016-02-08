@@ -1,0 +1,12 @@
+ru:
+  simple_form:
+    labels:
+      user:
+        email: Email
+        login: Имя пользователя
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        submit: Сохранить
+    required:
+      mark: '*'
+      text: обязательно

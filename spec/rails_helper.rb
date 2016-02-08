@@ -22,6 +22,8 @@ require 'rspec/rails'
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
+require Rails.root.join('spec/support/auth_helpers.rb')
+
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending!
@@ -55,9 +57,12 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  config.include Rspec::AuthHelpers, type: :controller
+
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation
     DatabaseCleaner.strategy = :transaction
+    seed_db
   end
 
   config.before(:each) do
@@ -67,4 +72,8 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+end
+
+def seed_db
+  load Rails.root.join('db/seeds/roles.rb')
 end

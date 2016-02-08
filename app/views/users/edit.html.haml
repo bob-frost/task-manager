@@ -1,0 +1,15 @@
+%h1= resource_user.login
+
+= render 'tabs', active: :users
+
+.row
+  .col-lg-4.col-md-5.col-sm-6
+    = simple_form_for resource_user do |f|
+      = f.input :login
+      = f.input :email
+      = f.input :password
+      = f.input :password_confirmation
+      - if policy(resource_user).permitted_attributes.include?(:role_id)
+        = f.input :role_id, collection: roles_collection_for_select, include_blank: 'user'
+      = link_to t('.cancel'), resource_user, class: 'btn btn-default'
+      = f.button :submit, t('.submit'), class: 'btn-primary'

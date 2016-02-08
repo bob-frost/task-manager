@@ -1,0 +1,7 @@
+- { success: :success, error: :danger }.each do |key, css_class|
+  - if flash[key].present?
+    .alert.alert-dismissable{class: "alert-#{css_class}", role: 'alert'}
+      .container
+        %button.close{type: 'button', data: {dismiss: 'alert'}}
+          %span &times
+        = flash[key]

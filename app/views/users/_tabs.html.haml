@@ -1,0 +1,5 @@
+%ul.nav.nav-tabs
+  %li{class: ('active' if active == :users)}
+    = link_to t('.profile'), resource_user
+  %li
+    = link_to t('.tasks'), '#'

@@ -1,9 +1,15 @@
 !!! 5
 %html
   %head
+    %meta{charset: 'utf-8'}
+    %meta{'http-equiv': 'X-UA-Compatible', content: 'IE=edge'}
+    %meta{name: 'viewport', width: 'device-width', 'initial-scale': 1}
     %title= t :site_name
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    = yield
+    = render 'flash_messages'
+    = render 'main_menu'
+    .container
+      = yield

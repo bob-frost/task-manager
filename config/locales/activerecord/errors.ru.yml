@@ -2,3 +2,7 @@ ru:
   activerecord:
     errors:
       models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: не совпадает с паролем

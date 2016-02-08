@@ -1,0 +1,15 @@
+%nav.navbar.navbar-default
+  .container
+    .navbar-header
+      = link_to 'TM', root_path, class: 'navbar-brand'
+    %ul.nav.navbar-nav.navbar-right
+      - if current_user
+        %li{class: ('active' if respond_to?(:resource_user) && resource_user == current_user)}
+          = link_to current_user.login, current_user
+        %li
+          = link_to t('.logout'), logout_path, method: :delete
+      - else
+        %li{class: ('active' if controller_name == 'users')}
+          = link_to t('.signup'), signup_path
+        %li{class: ('active' if controller_name == 'sessions')}
+          = link_to t('.login'), login_path

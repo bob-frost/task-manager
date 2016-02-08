@@ -1,0 +1,13 @@
+%h1= resource_user.login
+
+= render 'tabs', active: :users
+
+.text-right
+  - if policy(resource_user).update?
+    = link_to t('.edit'), [:edit, resource_user], class: 'btn btn-default'
+  - if policy(resource_user).destroy?
+    = link_to t('.destroy'), resource_user, method: :delete, data: { confirm: t('.destroy_confirm') }, class: 'btn btn-danger'
+
+%dl
+  %dt= t '.email'
+  %dd= mail_to resource_user.email
