@@ -3,7 +3,6 @@
 .ruby-version
 
 /config/database.yml
-/config/secrets.yml
 /log/*
 !/log/.keep
 /public/assets/*
