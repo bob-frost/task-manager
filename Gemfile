@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'pg', '~> 0.15'
 gem 'pundit'
+gem 'puma'
 gem 'rails', '4.2.5.1'
 gem 'russian'
 gem 'sass-rails', '~> 5.0'
@@ -29,3 +30,6 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
+group :production do
+  gem 'rails_12factor'
+end

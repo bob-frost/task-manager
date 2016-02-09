@@ -1,3 +1,13 @@
 language: ruby
 rvm:
-  - 2.2.4
+ - 2.2.4
+deploy:
+  provider: heroku
+  api_key:
+    secure: Klhc8NPkkyM9teOt9Qv8uArm3LhCy0/Uz4stkr6Uo30WCaggKugSGNwrmM3WodLxb4Kcg5COjcHB9wJIthRXCcsxifLNlWlhvfZ5i+rea/5MqDBbdf0tmuceNOX3Cj2UZsq8TGlBwPVQbvQWJjsdvecinW7RAc+JwZQmsWnoH//pg3vkPzlw/Q2aMLSV3P3YpKjPHX8apgfXCtO/uJw4kwyyMSkOIXFFm2WJzP7PU6ih1TVKlBnWWz3fongCMlKYKIFWvBRgVIK5Nz8mBQepNy4ks/NPdl1Q02E5XZlRxUcRtonQ6b4ETobRO3gLL5iM0LiOObV1s8kYx8YdlG0S99nxa/SiOXQqdh6scPDiyibJAIy8gWDvmznm5NvkxfSoAEGH1FYem/Rc82/SRaYwGDhAXVyH25MJoyetn+4ziabFBW8oiLrBv8SeQ9kV9jVRABFJaeg2wNOfEhGDNVj9TinNkSDfta4yFAno3OiUk/Omg5t2dzt7xvzG1Yc+AhHs75x/k5c1v8P4nTZystDKrMhK9CBxWfTGV0Z2XIkwjmVkGgyCmCRma/adUNICuY7wP02SqhjdT9pr6FaqCURgnDk+S0f84qw4gwwMk35nnyHZb8aU6FWPK+1z+BS8W/Z1YuV4FqDRwFRX8Y1hoiVLsOHD/0FU9Qd9yi65d8N6FAA=
+  app: test-task-manager
+  on:
+    repo: bob-frost/task-manager
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database task_manager_test;' -U postgres
