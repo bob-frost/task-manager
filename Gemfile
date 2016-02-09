@@ -5,6 +5,7 @@ gem 'bcrypt'
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'coffee-rails', '~> 4.1.0'
+gem 'faker', require: false
 gem 'haml'
 gem 'jquery-rails'
 gem 'kaminari'
