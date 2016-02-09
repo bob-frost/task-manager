@@ -5,3 +5,4 @@ ru:
       last: '&#187;'
       next: '&#8250;'
       previous: '&#8249;'
+      truncate: '...'
