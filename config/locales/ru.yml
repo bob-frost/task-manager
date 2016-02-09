@@ -42,6 +42,7 @@ ru:
       show:
         assignee: Исполнитель
         assignee_blank: не назначен
+        attachment: Прикрепленный файл
         destroy: Удалить
         destroy_confirm: Удалить задачу?
         edit: Редактировать

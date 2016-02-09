@@ -1,22 +1,31 @@
 %h1= t '.title', task_id: resource_task.id, task_name: resource_task.name
 
-
-
-.text-right
-  - if policy(resource_task).update?
-    = link_to t('.edit'), edit_task_path(resource_task), class: 'btn btn-default'
-  - if policy(resource_task).destroy?
-    = link_to t('.destroy'), resource_task, method: :delete, data: { confirm: t('.destroy_confirm') }, class: 'btn btn-danger'
-
-%dl
-  %dt= t '.user'
-  %dd= link_to resource_task.user.name, resource_task.user
-  %dt= t '.assignee'
-  %dd
-    - if resource_task.assignee.present?
-      = link_to resource_task.assignee.name, resource_task.assignee
-    - else
-      = t '.assignee_blank'
-
-- if resource_task.description.present?
-  = simple_format resource_task.description
+.task
+  .text-right
+    - if policy(resource_task).update?
+      = link_to t('.edit'), edit_task_path(resource_task), class: 'btn btn-default'
+    - if policy(resource_task).destroy?
+      = link_to t('.destroy'), resource_task, method: :delete, data: { confirm: t('.destroy_confirm') }, class: 'btn btn-danger'
+    
+  %dl
+    %dt= t '.user'
+    %dd= link_to resource_task.user.name, resource_task.user
+    %dt= t '.assignee'
+    %dd
+      - if resource_task.assignee.present?
+        = link_to resource_task.assignee.name, resource_task.assignee
+      - else
+        = t '.assignee_blank'
+  
+  - if resource_task.description.present?
+    = simple_format resource_task.description
+  
+  - if resource_task.attachment.present?
+    .task__attachment
+      .task__attachment-title= t '.attachment'
+      - if resource_task.attachment.image?
+        .task__attachment-image
+          = link_to resource_task.attachment.url do
+            = image_tag resource_task.attachment.url(:thumb), alt: resource_task.attachment.file.filename 
+      - else
+        = link_to resource_task.attachment.file.filename, resource_task.attachment.url 

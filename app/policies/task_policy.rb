@@ -21,7 +21,7 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    [:name, :description, :assignee_id]
+    [:name, :description, :assignee_id, :attachment]
   end
 
   private

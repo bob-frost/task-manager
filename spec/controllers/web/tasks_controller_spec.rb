@@ -117,6 +117,13 @@ RSpec.describe Web::TasksController, type: :controller do
           expect(task.assignee).to eq(another_user)
         end
 
+        it 'allows to set attachment' do
+          file = Rack::Test::UploadedFile.new "#{Rails.root}/spec/files/task_attachment.txt", 'text/plain'
+          post :create, task: valid_params.merge(attachment: file)
+          task = Task.last
+          expect(task.attachment).to be_present
+        end
+
         it 'redirects to task page' do
           post :create, task: valid_params
           task = Task.last
@@ -274,6 +281,14 @@ RSpec.describe Web::TasksController, type: :controller do
             task.reload
           end.to change(task, :assignee).from(nil).to(another_user)
         end
+
+        it 'allows to set attachment' do
+          file = Rack::Test::UploadedFile.new "#{Rails.root}/spec/files/task_attachment.txt", 'text/plain'
+          expect do
+            patch :update, id: task.id, task: valid_params.merge(attachment: file)
+            task.reload
+          end.to change { task.attachment.present? }.from(false).to(true)
+        end
         
         it 'redirects to updated task' do
           patch :update, id: task.id, task: valid_params
@@ -306,6 +321,14 @@ RSpec.describe Web::TasksController, type: :controller do
             patch :update, id: task.id, task: valid_params.merge(assignee_id: another_user.id)
             task.reload
           end.to change(task, :assignee).from(nil).to(another_user)
+        end
+
+        it 'allows to set attachment' do
+          file = Rack::Test::UploadedFile.new "#{Rails.root}/spec/files/task_attachment.txt", 'text/plain'
+          expect do
+            patch :update, id: task.id, task: valid_params.merge(attachment: file)
+            task.reload
+          end.to change { task.attachment.present? }.from(false).to(true)
         end
         
         it 'redirects to updated task' do

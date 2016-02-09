@@ -6,3 +6,6 @@ ru:
           attributes:
             password_confirmation:
               confirmation: не совпадает с паролем
+  errors:
+    messages:
+      file_size_limit: 'допустимы файлы не более %{limit}'

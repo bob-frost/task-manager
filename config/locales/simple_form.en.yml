@@ -3,6 +3,7 @@ ru:
     labels:
       task:
         assignee_id: Исполнитель
+        attachment: Прикрепить файл
         description: Описание
         name: Название
         submit: Сохранить

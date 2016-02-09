@@ -26,5 +26,8 @@ class Task < ActiveRecord::Base
     end
   end
 
+  mount_uploader :attachment, Task::AttachmentUploader
+  validates :attachment, max_file_size: 2.megabytes
+
   scope :ordered, -> { order('created_at DESC') }
 end

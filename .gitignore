@@ -6,5 +6,6 @@
 /log/*
 !/log/.keep
 /public/assets/*
+/public/uploads/*
 /tmp
 /coverage

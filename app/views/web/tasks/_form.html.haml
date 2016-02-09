@@ -1,6 +1,7 @@
 = simple_form_for task do |f|
   = f.input :name
   = f.input :description
+  = f.input :attachment, as: :file
   - if policy(task).permitted_attributes.include?(:assignee_id)
     = f.input :assignee_id, collection: assignee_collection_for_select, label_method: :name, include_blank: true
   = f.button :submit, t('.submit'), class: 'btn-primary'
