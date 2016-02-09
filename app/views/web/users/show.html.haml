@@ -11,6 +11,5 @@
 %dl
   %dt= t '.email'
   %dd= mail_to resource_user.email
-%dl
   %dt= t '.role'
   %dd= t "roles.#{resource_user.role.try(:name) || 'user'}"

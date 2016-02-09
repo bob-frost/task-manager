@@ -1,28 +1,39 @@
 %h1= t '.title', task_id: resource_task.id, task_name: resource_task.name
 
 .task
-  .text-right
-    - if policy(resource_task).update?
-      = link_to t('.edit'), edit_task_path(resource_task), class: 'btn btn-default'
-    - if policy(resource_task).destroy?
-      = link_to t('.destroy'), resource_task, method: :delete, data: { confirm: t('.destroy_confirm') }, class: 'btn btn-danger'
-    
-  %dl
-    %dt= t '.user'
-    %dd= link_to resource_task.user.name, resource_task.user
-    %dt= t '.assignee'
-    %dd
-      - if resource_task.assignee.present?
-        = link_to resource_task.assignee.name, resource_task.assignee
-      - else
-        = t '.assignee_blank'
+  .task__toolbar.clearfix
+    .row
+      .col-xs-6
+        = task_state_label resource_task
+        - if policy(resource_task).next_state?
+          = task_next_state_button resource_task, class: 'btn-sm'
+      .col-xs-6.text-right
+        - if policy(resource_task).update?
+          = link_to t('.edit'), edit_task_path(resource_task), class: 'btn btn-default btn-sm'
+        - if policy(resource_task).destroy?
+          = link_to t('.destroy'), resource_task, method: :delete, data: { confirm: t('.destroy_confirm') }, class: 'btn btn-danger btn-sm'
+  
+  .task__section  
+    %dl
+      %dt= t '.created_at'
+      %dd= l resource_task.created_at, format: '%d %B %Y - %H:%M'
+      %dt= t '.user'
+      %dd= link_to resource_task.user.name, resource_task.user
+      %dt= t '.assignee'
+      %dd
+        - if resource_task.assignee.present?
+          = link_to resource_task.assignee.name, resource_task.assignee
+        - else
+          = t '.assignee_blank'
   
   - if resource_task.description.present?
-    = simple_format resource_task.description
+    .task__section
+      %h4= t '.description'
+      = simple_format resource_task.description
   
   - if resource_task.attachment.present?
-    .task__attachment
-      .task__attachment-title= t '.attachment'
+    .task__section.task__attachment
+      %h4= t '.attachment'
       - if resource_task.attachment.image?
         .task__attachment-image
           = link_to resource_task.attachment.url do
