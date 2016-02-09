@@ -8,6 +8,9 @@ deploy:
   app: test-task-manager
   on:
     repo: bob-frost/task-manager
+  run:
+    - rake db:migrate
+    - rake db:seed
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database task_manager_test;' -U postgres
