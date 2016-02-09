@@ -1,0 +1,7 @@
+ru:
+  views:
+    pagination:
+      first: '&#171;'
+      last: '&#187;'
+      next: '&#8250;'
+      previous: '&#8249;'

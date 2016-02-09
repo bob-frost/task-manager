@@ -1,0 +1,24 @@
+.tasks
+  - if tasks.present?
+    %table.table.table-striped
+      %colgroup
+        %col{style: 'width: 5%'}
+        %col{style: 'width: 40%'}
+        %col{style: 'width: 15%'}
+        %col{style: 'width: 15%'}
+        %col{style: 'width: 15%'}
+        %col{style: 'width: 10%'}
+      %thead
+        %tr
+          %th= t '.id'
+          %th= t '.details'
+          %th= t '.created_at'
+          %th= t '.assignee'
+          %th
+          %th
+      %tbody
+        = render partial: 'web/base/task', collection: tasks, as: :task
+
+    = paginate tasks, theme: 'twitter-bootstrap-3'
+  - else
+    .tasks__empty= t '.empty'

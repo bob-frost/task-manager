@@ -3,6 +3,15 @@ class User < ActiveRecord::Base
 
   belongs_to :role
 
+  has_many :tasks,
+    inverse_of: :user,
+    dependent: :destroy
+
+  has_many :assigned_tasks,
+    class_name: 'Task',
+    inverse_of: :assignee,
+    foreign_key: :assignee_id
+
   validates :email,
     presence: true,
     uniqueness: { case_sensitive: false },
@@ -37,6 +46,10 @@ class User < ActiveRecord::Base
     define_method "#{role_name}?" do
       has_role? role_name
     end
+  end
+
+  def associated_tasks
+    Task.where 'user_id = :user_id OR assignee_id = :user_id', user_id: id
   end
 
   private

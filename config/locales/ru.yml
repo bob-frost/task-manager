@@ -5,6 +5,18 @@ ru:
         login: Вход
         logout: Выход
         signup: Регистрация
+      task:
+        assignee_blank: не назначен
+        destroy_confirm: Удалить задачу?
+        destroy_title: Удалить
+        edit_title: Редактировать
+        user: Автор
+      tasks:
+        assignee: Исполнитель
+        created_at: Создана
+        details: Задача
+        empty: Нет задач
+        id: ID
     sessions:
       create:
         failure: Неверный email и/или пароль 
@@ -14,6 +26,29 @@ ru:
         remember: Запомнить меня
         submit: Войти
         title: Вход
+    tasks:
+      create:
+        success: Задача создана
+      destroy:
+        success: Задача удалена
+      edit:
+        title: 'Редактирование задачи #%{task_id}'
+      form:
+        submit: Сохранить
+      index:
+        title: Все задачи
+      new:
+        title: Создание задачи
+      show:
+        assignee: Исполнитель
+        assignee_blank: не назначен
+        destroy: Удалить
+        destroy_confirm: Удалить задачу?
+        edit: Редактировать
+        title: 'Задача #%{task_id} - %{task_name}'
+        user: Автор
+      update:
+        success: Задача обновлена
     users:
       create:
         success: Вы успешно зарегистировались
@@ -29,8 +64,13 @@ ru:
         destroy: Удалить
         destroy_confirm: Вы уверены, что хотите удалить аккаунт и все его задачи?
         edit: Редактировать
+        email: Email
+        role: Роль
       tabs:
         profile: Профиль
         tasks: Задачи
+      tasks:
+        index:
+          new: Добавить задачу
       update:
         success: Данные сохранены

@@ -1,0 +1,9 @@
+%h1= resource_user.login
+
+= render 'web/users/tabs', active: :tasks
+
+.text-right
+  - if resource_user == current_user
+    = link_to t('.new'), new_task_path, class: 'btn btn-default'
+
+= render 'tasks', tasks: resource_collection

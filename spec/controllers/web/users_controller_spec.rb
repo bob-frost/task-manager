@@ -80,9 +80,10 @@ RSpec.describe Web::UsersController, type: :controller do
           expect(controller.current_user).to eq(User.last)
         end
 
-        it 'redirects to created user' do
+        it "redirects to created user's tasks page" do
           post :create, user: valid_params
-          expect(response).to redirect_to(User.last)
+          user = User.last
+          expect(response).to redirect_to(user_tasks_url(user))
         end
       end
 

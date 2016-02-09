@@ -37,9 +37,9 @@ RSpec.describe Web::SessionsController, type: :controller do
         post :create, params
       end
 
-      it 'redirects to user page' do
+      it "redirects to current user's tasks page" do
         post :create, valid_credentials
-        expect(response).to redirect_to(user)
+        expect(response).to redirect_to(user_tasks_url(user))
       end
 
       context 'when user is logged in' do

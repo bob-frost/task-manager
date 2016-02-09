@@ -9,16 +9,17 @@ module Web
     end
 
     def new
-      authorize resource_user, :create?
+      authorize :user, :create?
     end
 
     def create
-      authorize resource_user, :create?
+      authorize :user, :create?
 
+      resource_user.assign_attributes resource_user_params
       if resource_user.save
         login resource_user
         flash[:success] = t '.success'
-        redirect_to resource_user
+        redirect_to user_tasks_url(resource_user)
       else
         render :new
       end
@@ -53,12 +54,12 @@ module Web
       @user ||= if params[:id].present?
         User.find params[:id]
       else
-        User.new resource_user_params
+        User.new
       end
     end
 
     def resource_user_params
-      params.has_key?(:user) ? params.require(:user).permit(policy(:user).permitted_attributes) : {}
+      params.has_key?(:user) ? params.require(:user).permit(policy(resource_user).permitted_attributes) : {}
     end
   end
 end

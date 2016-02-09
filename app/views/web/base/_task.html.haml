@@ -1,0 +1,24 @@
+%tr.tasks-item{id: "tasks-item-#{task.id}"}
+  %td= task.id
+  %td
+    = link_to task.name, task
+    = task_state_label task
+    .tasks-item__author
+      = "#{t '.user'}:"
+      = link_to task.user.login, task.user
+  %td= l task.created_at, format: '%d.%m.%Y - %H:%M'
+  %td
+    - if task.assignee.present?
+      = link_to task.assignee.login, task.assignee
+    - else
+      = t '.assignee_blank'
+  %td
+    - if policy(task).next_state?
+      = task_next_state_button task, data: { remote: true, disable_with: t('statuses.processing') }, class: 'btn-block btn-sm'
+  %td.text-center
+    - if policy(task).update?
+      = link_to edit_task_path(task), title: t('.edit_title'), class: 'btn btn-link btn-sm' do
+        %span.glyphicon.glyphicon-pencil
+    - if policy(task).destroy?
+      = link_to task, method: :delete, data: { remote: true, confirm: t('.destroy_confirm') }, title: t('.destroy_title'), class: 'btn btn-link btn-sm' do
+        %span.glyphicon.glyphicon-remove.text-danger

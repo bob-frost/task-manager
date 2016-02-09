@@ -1,3 +1,17 @@
 ru:
+  roles:
+    admin: Администратор
+    user: Пользователь
   site_name: Task manager
+  statuses:
+    processing: Обработка...
+  task_states:
+    names:
+      finished: Завершена
+      started: В работе
+      todo: Новая
+    next_actions:
+      finished: Открыть повторно
+      started: Завершить
+      todo: Начать
   unauthorized: Доступ запрещен

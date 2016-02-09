@@ -8,7 +8,7 @@ module Web
       user = User.find_by email: params[:email]
       if user && user.authenticate(params[:password])
         login user, params[:remember] == '1'
-        redirect_to user
+        redirect_to user_tasks_url(user)
       else
         flash.now[:error] = t '.failure'
         render :new
