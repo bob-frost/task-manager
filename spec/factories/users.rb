@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
     email { FactoryGirl.generate :email }
-    login { FactoryGirl.generate :login }
+    name { FactoryGirl.generate :user_name }
     password '12345'
     password_confirmation '12345'
 

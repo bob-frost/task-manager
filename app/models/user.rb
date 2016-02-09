@@ -17,10 +17,9 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false },
     email: true
 
-  validates :login,
+  validates :name,
     presence: true,
-    length: { within: 3..30 },
-    uniqueness: { case_sensitive: false }
+    length: { within: 3..30 }
 
   validates :password,
     length: { within: 4..20 },

@@ -3,7 +3,7 @@ FactoryGirl.define do
     "person-#{n}@example.com"
   end
   
-  sequence :login do |n|
+  sequence :user_name do |n|
     "person-#{n}"
   end
 end

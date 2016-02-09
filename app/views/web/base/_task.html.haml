@@ -5,11 +5,11 @@
     = task_state_label task
     .tasks-item__author
       = "#{t '.user'}:"
-      = link_to task.user.login, task.user
+      = link_to task.user.name, task.user
   %td= l task.created_at, format: '%d.%m.%Y - %H:%M'
   %td
     - if task.assignee.present?
-      = link_to task.assignee.login, task.assignee
+      = link_to task.assignee.name, task.assignee
     - else
       = t '.assignee_blank'
   %td

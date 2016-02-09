@@ -65,7 +65,7 @@ RSpec.describe Web::UsersController, type: :controller do
           post :create, user: valid_params
           user = User.last
           expect(user.email).to eq(valid_params[:email])
-          expect(user.login).to eq(valid_params[:login])
+          expect(user.name).to eq(valid_params[:name])
           expect(user.authenticate(valid_params[:password])).to eq(user)
         end
 
@@ -105,7 +105,7 @@ RSpec.describe Web::UsersController, type: :controller do
           post :create, user: invalid_params
           resource_user = controller.view_context.resource_user 
           expect(resource_user.email).to eq(invalid_params[:email])
-          expect(resource_user.login).to eq(invalid_params[:login])
+          expect(resource_user.name).to eq(invalid_params[:name])
         end
       end
     end
@@ -231,7 +231,7 @@ RSpec.describe Web::UsersController, type: :controller do
           patch :update, id: user.id, user: valid_params
           user.reload
           expect(user.email).to eq(valid_params[:email])
-          expect(user.login).to eq(valid_params[:login])
+          expect(user.name).to eq(valid_params[:name])
           expect(user.authenticate(valid_params[:password])).to eq(user)
         end
 
@@ -259,7 +259,7 @@ RSpec.describe Web::UsersController, type: :controller do
           patch :update, id: user.id, user: valid_params
           user.reload
           expect(user.email).to eq(valid_params[:email])
-          expect(user.login).to eq(valid_params[:login])
+          expect(user.name).to eq(valid_params[:name])
           expect(user.authenticate(valid_params[:password])).to eq(user)
         end
 

@@ -17,7 +17,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    attributes = [:email, :login, :password, :password_confirmation]
+    attributes = [:email, :name, :password, :password_confirmation]
     attributes << :role_id if user.present? && user.admin? && user != record
     attributes
   end

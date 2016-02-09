@@ -14,7 +14,7 @@ module Web
     }.with_indifferent_access
 
     def assignee_collection_for_select
-      User.order :login
+      User.order :name
     end
 
     def task_state_label(task, options = {})

@@ -8,7 +8,7 @@ ru:
         submit: Сохранить
       user:
         email: Email
-        login: Имя пользователя
+        name: Имя
         password: Пароль
         password_confirmation: Подтверждение пароля
         submit: Сохранить

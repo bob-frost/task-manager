@@ -10,11 +10,11 @@
 
 %dl
   %dt= t '.user'
-  %dd= link_to resource_task.user.login, resource_task.user
+  %dd= link_to resource_task.user.name, resource_task.user
   %dt= t '.assignee'
   %dd
     - if resource_task.assignee.present?
-      = link_to resource_task.assignee.login, resource_task.assignee
+      = link_to resource_task.assignee.name, resource_task.assignee
     - else
       = t '.assignee_blank'
 

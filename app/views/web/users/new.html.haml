@@ -3,7 +3,7 @@
 .row
   .col-lg-4.col-md-5.col-sm-6
     = simple_form_for resource_user do |f|
-      = f.input :login
+      = f.input :name
       = f.input :email
       = f.input :password, required: true
       = f.input :password_confirmation, required: true

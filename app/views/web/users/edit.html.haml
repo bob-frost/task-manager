@@ -1,11 +1,11 @@
-%h1= resource_user.login
+%h1= resource_user.name
 
 = render 'tabs', active: :users
 
 .row
   .col-lg-4.col-md-5.col-sm-6
     = simple_form_for resource_user do |f|
-      = f.input :login
+      = f.input :name
       = f.input :email
       = f.input :password
       = f.input :password_confirmation
