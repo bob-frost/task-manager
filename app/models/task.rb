@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
 
   include AASM
   aasm column: :state, enum: true, skip_validation_on_save: true do
-    state :todo, :initial => true
+    state :todo, initial: true
     state :started
     state :finished
 
